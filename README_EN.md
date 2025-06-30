@@ -21,7 +21,6 @@ Welcome to the "Strands Agents in 5 Minutes" tutorial series! This is a series f
 | 6 | Strands Integration with Guardrails | Use Strands to integrate Guardrails, protect Agent behavior, enhance security capabilities | Configure Guardrails rules, trigger and observe Strands Agent protection behavior | 5 min | L200 |
 | 6 | Strands and A2A Protocol | Use A2A protocol to encapsulate Strands Agents for remote Agent collaboration | Use Strands and A2A SDK to develop remote agents and client agent, implement multi agents remote collaboration | 5 min | L300 |
 
-[1] https://pplx-res.cloudinary.com/image/private/user_uploads/52003953/42b4107b-92f4-4c5d-bc40-cfd967e543d0/Screenshot-2025-06-30-at-15.06.50.jpg
 
 ## Tutorial Features
 - **Concise and Efficient**: Each session controlled within 5 minutes
