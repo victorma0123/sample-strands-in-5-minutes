@@ -78,5 +78,8 @@ python3 first_agent.py
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Security
+See [CONTRIBUTING](CONTRIBUTING.md) for more information.
+
 ## License
-This project is licensed under the [MIT License](LICENSE).
+This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
