@@ -21,8 +21,6 @@
 | 6 | Strands 与 Guardrails 集成 | 用 Strands 集成 Guardrails，保护 Agent 行为，提升安全能力 | 配置 Guardrails 规则，触发并观察 Strands Agent 保护行为 | 5 min | L200 |
 | 6 | Strands 与A2A 协议 | 使用A2A协议封装 Strands Agents 实现 Agents 远程协作 | 用Strands 和 A2A SDK开发 remote agents和client agent，实现multi agents 远程协作 | 5 min | L300 |
 
-[1] https://pplx-res.cloudinary.com/image/private/user_uploads/52003953/42b4107b-92f4-4c5d-bc40-cfd967e543d0/Screenshot-2025-06-30-at-15.06.50.jpg
-
 ## 教程特点
 - **简洁高效**: 每节控制在5分钟内
 - **理论结合实践**: 每个概念都配有实际的Demo
