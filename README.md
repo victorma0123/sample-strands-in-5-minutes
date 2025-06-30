@@ -11,39 +11,29 @@
 - 使用户能够独立开发和部署自己的Agent Demo
 
 ## 课程体系
-按照L100-L400级别划分，循序渐进地介绍：
+| No. | Session | Description | Demo | Duration | Level |
+|-----|---------|-------------|------|----------|-------|
+| 1 | Strands SDK 第一个 Agent | Strands 核心架构 模型/工具/提示、安装 Strands SDK、创建并运行第一个 Strands Agent | 用 Python 代码输出 Strands Agent 的核心组件说明，安装 SDK，运行一个 Strands Agent | 5 min | L100 |
+| 2 | Strands 会话管理与状态维护 | Strands Loop 简介、会话历史、会话窗口、多轮对话实现 | 用 Strands 实现多轮对话，保存并打印会话历史 | 5 min | L200 |
+| 3 | Strands 构建自定义的 tool和使用 | Strands 内置工具调用，工具自定义定义与注册 | 开发一个自定义工具（如天气查询）并集成到 Strands Agent 在 Strands Agent 中注册并调用内置工具 | 5 min | L200 |
+| 4 | Strands 融合 MCP | Strands 中对于MCP Server的发现，集成和使用 | 通过MCP方式注册多个MCP Server 到Agentic 并实现调用 | 5 min | L200 |
+| 5 | Strands 实现 Multi-Agent协作 | 基于Strands内置的Multi frameworks实现多模型的调用 | 通过Strands多模型调用，实现多模型协作的内容创作 | 5 min | L200 |
+| 6 | Strands 与 Guardrails 集成 | 用 Strands 集成 Guardrails，保护 Agent 行为，提升安全能力 | 配置 Guardrails 规则，触发并观察 Strands Agent 保护行为 | 5 min | L200 |
+| 6 | Strands 与A2A 协议 | 使用A2A协议封装 Strands Agents 实现 Agents 远程协作 | 用Strands 和 A2A SDK开发 remote agents和client agent，实现multi agents 远程协作 | 5 min | L300 |
 
-### L100 - 基础概念
-- Strands Agent的核心组件
-- 基本工作流程
-- 快速启动示例
-
-### L200 - 进阶应用
-- 会话管理
-- 工具集成
-- Web服务对接
-
-### L300 - 高级特性
-- 状态持久化
-- 安全与监控
-- 性能优化
-
-### L400 - 扩展开发
-- MCP协议扩展
-- 自定义工具开发
-- 最佳实践
+[1] https://pplx-res.cloudinary.com/image/private/user_uploads/52003953/42b4107b-92f4-4c5d-bc40-cfd967e543d0/Screenshot-2025-06-30-at-15.06.50.jpg
 
 ## 教程特点
-- **简洁高效**: 每节课程控制在5分钟内，突出重点
-- **理论结合实践**: 每个概念都配有实际的示例代码
+- **简洁高效**: 每节控制在5分钟内
+- **理论结合实践**: 每个概念都配有实际的Demo
 - **循序渐进**: 从基础到进阶，层层递进
-- **动手实践**: 每节课程都包含可运行的Demo
+- **动手实践**: 每节课程都包含可运行的代码
 
 ## 快速开始
 
 ### 环境要求
 - Python 3.10或更高版本
-- AWS账户（用于访问Amazon Bedrock中的Claude 3.7模型）
+- 亚马逊云科技账户（用于访问Amazon Bedrock中的Claude 3.7模型）
 
 ### 环境搭建
 1. 创建并激活Python虚拟环境：
