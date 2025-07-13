@@ -15,8 +15,8 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 
 - **MCP Server 构建** - 使用 `FastMCP` 快速创建服务器  
 - **MCP Client 集成** - 一行代码连接任何 MCP 服务  
-- **工具自动发现** - 自动获取远程工具  
-- **无缝集成** - Agent 透明调用远程服务
+- **工具快速发现** - 快速的注册远程工具  
+- **无缝集成** - Agent 便捷调用远程服务
 
 ## Strands 支持的 MCP Server 连接方式
 
