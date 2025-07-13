@@ -18,7 +18,7 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 **工具自动发现** - 自动获取远程工具  
 **无缝集成** - Agent 透明调用远程服务
 
-### Strands 支持的 MCP 服务器连接方式
+## Strands 支持的 MCP Server 连接方式
 
 | 连接方式               | 说明                                             |
 |------------------------|--------------------------------------------------|
@@ -28,16 +28,16 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 | **自定义传输协议**       | 高级用户可实现自定义的 MCP 传输协议，满足特殊需求             |
 
 
-### Demo 介绍
+## Demo 介绍
 本 Demo 展示了一个基于MCP的美食菜谱智能Agent，它由提供美食菜谱数据服务的MCP Server和作为Client的Agent组成，通过MCP获取菜谱信息，实现菜系查询、菜谱推荐、食材搜索等核心功能。
 
-## 技术架构
+## Demo 架构
 
 ![Demo 架构图](mcp_architecture.png)
 
 
 
-## 构建 MCP Server
+## 1. 构建 MCP Server
 
 Strands 内置 FastMCP，让你轻松创建 MCP 服务器。以美食MCP Server为例：
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
 
-启动服务器：
+## 2. 启动MCP Server
 
 ```bash
 python strands_mcp_server.py
@@ -91,7 +91,7 @@ INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
 
 
 
-## 第三步：创建菜谱Agent
+## 2. 创建菜谱Agent
 
  `strands_cooking_agent.py`：
 
@@ -115,16 +115,37 @@ with mcp_client:
 
 ```
 
-## 第四步：运行 Agent
+## 3 ：运行 Agent
 在新终端启动（保持服务器运行）：
 ```bash
 python strands_cooking_agent.py
 ```
+Agent 启动后会显示：
+```
+连接 MCP 服务器...
+可用工具: ['list_cuisines', 'get_recipes_by_cuisine', 'search_recipes_by_ingredient']
 
+🍳 中华美食专家 - MCP 集成版
+==================================================
+🥢 试试问：'有哪些菜系？' 或 '推荐一道川菜' 或 '用鸡肉能做什么菜？'
+```
 
-## 第五步：测试Agent
+## 4：测试Agent
 
+测试1：查询菜系功能
+```
+有哪些菜系？
+```
 
+测试2：菜谱推荐功能
+```
+推荐一道川菜
+```
+
+测试3：食材搜索功能
+```
+用鸡肉能做什么菜？
+```
 
 ## 总结
 在本教程中，我们已经：
