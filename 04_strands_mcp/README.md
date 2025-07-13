@@ -1,4 +1,4 @@
-# Strands Agents MCP 集成指南
+# Strands Agents 与 MCP 集成
 
 欢迎来到 Strands in 5 minutes 快速上手系列！今天我们将学习如何使用 Strands Agents 集成 MCP（模型上下文协议），让 AI Agent 轻松调用外部工具和服务，扩展Agent 能力。
 
