@@ -67,11 +67,11 @@ def main():
             
             # print("\n🔧 正在注册工具到 Agent...")
             # # ... and add them to the agent
-            # cooking_expert.tool_registry.process_tools(mcp_tools)
+            cooking_expert.tool_registry.process_tools(mcp_tools)
             # print("✅ 工具注册完成！")
 
             # Start an interactive cooking session
-            print("\n 中华美食专家 - MCP 集成版")
+            print("\n 中华美食专家Agent - 集成 MCP ")
             print("=" * 50)
             print("\n🥢 试试问: '有哪些菜系？' 或 '推荐一道淮扬菜' 或 '用猪肉能做什么菜？'")
 
