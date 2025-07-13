@@ -29,11 +29,7 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 
 
 ### Demo 介绍
-
-本 Demo 展示了一个完整的基于Strands Agents的 MCP 集成案例：
-- **MCP Server**：提供中华美食菜谱数据服务
-- **Strands Agent** ：作为MCP Server的Client，通过 MCP 获取菜谱信息
-- **核心功能**：菜系查询、菜谱推荐、食材搜索
+本 Demo 展示了一个基于MCP的美食菜谱智能Agent，它由提供美食菜谱数据服务的MCP Server和作为Client的Agent组成，通过MCP获取菜谱信息，实现菜系查询、菜谱推荐、食材搜索等核心功能。
 
 ### 技术架构
 
@@ -48,7 +44,7 @@ with mcp_client:
     agent = Agent(model=model, tools=tools)  # 无缝集成
 ```
 
-## 构建 MCP 服务器（Server 端）
+## 构建 MCP Server
 
 Strands 内置 FastMCP，让你轻松创建 MCP 服务器。以美食MCP Server为例：
 
@@ -65,7 +61,7 @@ RECIPE_CATALOG = {
     # ... 更多菜系数据
 }
 
-# 3. 定义工具函数（自动暴露为 MCP 工具）
+# 3. 定义工具函数，采用`@mcp.tool()` 自动将函数暴露为 MCP 工具
 @mcp.tool()
 def list_cuisines() -> dict:
     """列出所有可用的中餐菜系"""
@@ -85,11 +81,6 @@ def search_recipes_by_ingredient(ingredient: str) -> dict:
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
-
-### 关键特性：
-- **装饰器模式**：`@mcp.tool()` 自动将函数暴露为 MCP 工具
-- **类型安全**：支持类型注解和自动验证
-- **多传输协议**：支持 HTTP、WebSocket 等传输方式
 
 启动服务器：
 
@@ -138,83 +129,12 @@ if __name__ == "__main__":
 ```
 
 ## 第四步：运行 Agent
-
 在新终端启动（保持服务器运行）：
-
 ```bash
-uv run python strands_cooking_agent.py
+python strands_cooking_agent.py
 ```
-
-
 
 ### 实际对话效果
-
-#### 🔍 菜系查询
-```
-用户：有哪些菜系？
-Agent：目前菜谱库包含以下菜系：
-       🌶️ 川菜 - 2道菜谱 (麻辣鲜香，口味浓郁)
-       🦆 粤菜 - 1道菜谱 (清淡鲜美，注重原味)  
-       🦐 淮扬菜 - 1道菜谱 (口味清淡，造型精美)
-```
-
-#### 🍲 菜谱推荐
-```
-用户：推荐一道川菜
-Agent：为您推荐两道经典川菜：
-
-       麻婆豆腐 (简单 | 20分钟)
-       食材：嫩豆腐、牛肉末、豆瓣酱、花椒...
-       步骤：豆腐焯水 → 炒牛肉末 → 下豆瓣酱...
-
-       宫保鸡丁 (中等 | 25分钟)  
-       食材：鸡胸肉、花生米、干辣椒...
-       步骤：鸡肉腌制 → 炸花生米 → 爆炒鸡丁...
-```
-
-#### 🥘 智能搜索
-```
-用户：用鸡肉能做什么菜？
-Agent：根据您的食材，找到以下菜谱：
-
-       宫保鸡丁 (川菜) - 中等难度，25分钟，麻辣香甜
-       白切鸡 (粤菜) - 简单，45分钟，清淡鲜美
-
-       建议：重口味选宫保鸡丁，清淡选白切鸡
-```
-
-### Demo 亮点
-- **智能理解**：自然语言查询，无需记忆命令
-- **实时数据**：通过 MCP 获取最新菜谱信息  
-- **个性化推荐**：根据用户需求智能推荐
-- **多维搜索**：支持按菜系、食材、难度等搜索
-
-## 高级用法
-
-也可以直接调用 MCP 工具：
-
-```python
-# 直接工具调用
-cuisines = agent.tool.list_cuisines()
-recipes = agent.tool.get_recipes_by_cuisine("sichuan")
-```
-
-## MCP 核心优势
-
-🔌 **即插即用** - 统一接口，无需了解服务内部实现  
-🌐 **技术无关** - 任何语言编写，任何地方部署  
-🚀 **轻松扩展** - 同时连接多个服务，组合功能
-
-```python
-# 多服务集成
-recipe_service = MCPClient(...)
-nutrition_service = MCPClient(...)
-
-with recipe_service, nutrition_service:
-    tools = recipe_service.list_tools_sync() + nutrition_service.list_tools_sync()
-    agent = Agent(model=model, tools=tools)  # 全能美食助手
-```
-
 
 ## 总结
 Strands Agents + MCP 让 AI Agent 具备了即插即用、跨语言、跨平台、多服务组合的强大能力。只需几行代码，通过MCP即让Strands可连接丰富的外部工具，快速构建智能体应用。
