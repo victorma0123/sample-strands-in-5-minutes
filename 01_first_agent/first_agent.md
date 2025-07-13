@@ -70,10 +70,41 @@ AWS_SECRET_ACCESS_KEY=你的秘密访问密钥
 AWS_DEFAULT_REGION=你的默认区域（如us-east-1）
 ```
 ### 2.2 环境变量配置
-运行代码
-```
+
+## 3. 运行方式
+
+### 3.1 命令行方式
+```bash
 python3 first_agent.py
 ```
+
+### 3.2 Web界面方式 (推荐)
+我们提供了基于Streamlit的Web界面，让您可以通过浏览器与AI助手交互：
+
+**安装Web界面依赖：**
+```bash
+pip install -r requirements.txt
+```
+
+**启动Web界面：**
+```bash
+python3 run_web.py
+```
+
+或者直接使用Streamlit命令：
+```bash
+streamlit run web_interface.py
+```
+
+**访问界面：**
+打开浏览器访问 `http://localhost:8501`
+
+**Web界面功能：**
+- 💬 实时对话界面
+- 📱 响应式设计，支持移动端
+- 🗂️ 对话历史记录
+- 💡 预设示例问题
+- 🎨 美观的用户界面
 
 ## 总结
 - **易于上手**：只需几行代码即可创建功能强大的 Agent。
