@@ -2,16 +2,16 @@
 
 欢迎来到 Strands in 5 minutes 快速上手系列！今天我们将学习如何使用 Strands Agents 集成 MCP（模型上下文协议），让 AI Agent 轻松调用外部工具和服务，极大扩展智能体能力。
 
-### 什么是 MCP？
+## 什么是 MCP？
 MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与外部工具和服务的交互方式。它像一个“万能插座”，让 Agent 无需关心服务细节，就能调用数据库、API、文件系统等多种工具。Strands Agents 内置对 MCP 的支持，能轻松连接 MCP 服务器，自动发现和调用其提供的工具。
 
-## MCP 优势
+##  MCP 作用
 统一接口：不同服务用同一协议接入，简化集成复杂度
 多语言&多平台：支持任意语言编写的服务，支持本地、云端多种部署
 动态发现工具：Agent 启动时自动获取 MCP 服务器上的所有工具
 安全可靠：通过上下文管理确保连接生命周期和资源释放
 
-### Strands Agents 的 MCP 优势
+## Strands Agents 的 MCP 优势
 
 **MCP Server 构建** - 使用 `FastMCP` 快速创建服务器  
 **MCP Client 集成** - 一行代码连接任何 MCP 服务  
@@ -31,18 +31,11 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 ### Demo 介绍
 本 Demo 展示了一个基于MCP的美食菜谱智能Agent，它由提供美食菜谱数据服务的MCP Server和作为Client的Agent组成，通过MCP获取菜谱信息，实现菜系查询、菜谱推荐、食材搜索等核心功能。
 
-### 技术架构
+## 技术架构
 
 ![Demo 架构图](mcp_architecture.png)
 
 
-```python
-# Strands MCP 集成核心代码
-mcp_client = MCPClient(lambda: streamablehttp_client("http://localhost:8080/mcp"))
-with mcp_client:
-    tools = mcp_client.list_tools_sync()  # 自动发现工具
-    agent = Agent(model=model, tools=tools)  # 无缝集成
-```
 
 ## 构建 MCP Server
 
@@ -85,47 +78,41 @@ if __name__ == "__main__":
 启动服务器：
 
 ```bash
-uv run python strands_mcp_server.py
-# 输出：Uvicorn running on http://0.0.0.0:8080
+python strands_mcp_server.py
 ```
+启动后显示如下
+```
+INFO:     Started server process
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+```
+**保持服务器运行**，Agent需要连接到此服务，查询菜单数据
 
-**保持服务器运行**，Agent 需要连接此服务
 
-## 第三步：创建美食专家 Agent
 
-创建 `strands_cooking_agent.py`：
+## 第三步：创建菜谱Agent
+
+ `strands_cooking_agent.py`：
 
 ```python
-from strands import Agent
-from strands.tools.mcp import MCPClient
-from mcp.client.streamable_http import streamablehttp_client
-from strands.models import BedrockModel
 
-# 配置模型
-model = BedrockModel(
-    model_id="us.anthropic.claude-sonnet-4-20250514-v1:0",
-    region_name="us-west-2"
-)
+# 连接 MCP 服务器
+mcp_client = MCPClient(lambda: streamablehttp_client("http://localhost:8080/mcp"))
 
-def main():
-    # 连接 MCP 服务器
-    mcp_client = MCPClient(lambda: streamablehttp_client("http://localhost:8080/mcp"))
+with mcp_client:
+    # 创建 Agent 并注册 MCP 工具
+    agent = Agent(model=model, system_prompt="你是中华美食专家...")
+    mcp_tools = mcp_client.list_tools_sync()
+    agent.tool_registry.process_tools(mcp_tools)
     
-    with mcp_client:
-        # 创建 Agent 并注册 MCP 工具
-        agent = Agent(model=model, system_prompt="你是中华美食专家...")
-        mcp_tools = mcp_client.list_tools_sync()
-        agent.tool_registry.process_tools(mcp_tools)
-        
-        # 开始交互
-        while True:
-            user_input = input("\n您的需求: ")
-            if user_input.lower() in ["exit", "退出"]:
-                break
-            agent(user_input)
+    # 开始交互
+    while True:
+        user_input = input("\n您的需求: ")
+        if user_input.lower() in ["exit", "退出"]:
+            break
+        agent(user_input)
 
-if __name__ == "__main__":
-    main()
 ```
 
 ## 第四步：运行 Agent
@@ -134,7 +121,16 @@ if __name__ == "__main__":
 python strands_cooking_agent.py
 ```
 
-### 实际对话效果
+
+## 第五步：测试Agent
+
+
 
 ## 总结
+在本教程中，我们已经：
+✅ 构建了一个简单的 MCP 服务器，演示外部服务集成  
+✅ 以最少代码将 Agent 连接到 MCP 服务器  
+✅ 实现了通过自然语言的无缝工具调用  
+✅ 理解了 Strands Agents SDK 如何简化了 MCP 的复杂性 
+
 Strands Agents + MCP 让 AI Agent 具备了即插即用、跨语言、跨平台、多服务组合的强大能力。只需几行代码，通过MCP即让Strands可连接丰富的外部工具，快速构建智能体应用。
