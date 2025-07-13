@@ -1,10 +1,18 @@
 from mcp.server import FastMCP
 import sys
 import locale
+import logging
 
 # Ensure UTF-8 encoding
 if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
+
+# #打开debug 日志 
+# logging.getLogger("strands").setLevel(logging.DEBUG)
+# logging.basicConfig(
+#     format="%(levelname)s | %(name)s | %(message)s",
+#     handlers=[logging.StreamHandler()]
+# )
 
 # Create an MCP server
 mcp = FastMCP(

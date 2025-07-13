@@ -3,7 +3,16 @@ from strands.tools.mcp import MCPClient
 from mcp.client.streamable_http import streamablehttp_client
 from strands.models import BedrockModel
 import sys
-    
+import logging
+
+
+#打开debug 日志 
+logging.getLogger("strands").setLevel(logging.DEBUG)
+logging.basicConfig(
+    format="%(levelname)s | %(name)s | %(message)s",
+    handlers=[logging.StreamHandler()]
+)
+
 # Ensure UTF-8 encoding
 if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
@@ -58,7 +67,7 @@ def main():
             # Start an interactive cooking session
             print("\n 中华美食专家 - MCP 集成版")
             print("=" * 50)
-            print("\n🥢 试试问: '有哪些菜系？' 或 '推荐一道川菜' 或 '用鸡肉能做什么菜？'")
+            print("\n🥢 试试问: '有哪些菜系？' 或 '推荐一道淮扬菜' 或 '用猪肉能做什么菜？'")
 
             while True:
                 user_input = input("\n您的需求: ")
