@@ -5,18 +5,18 @@
 ## 什么是 MCP？
 MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与外部工具和服务的交互方式。它像一个“万能插座”，让 Agent 无需关心服务细节，就能调用数据库、API、文件系统等多种工具。Strands Agents 内置对 MCP 的支持，能轻松连接 MCP 服务器，自动发现和调用其提供的工具。
 
-##  MCP 作用
-统一接口：不同服务用同一协议接入，简化集成复杂度
-多语言&多平台：支持任意语言编写的服务，支持本地、云端多种部署
-动态发现工具：Agent 启动时自动获取 MCP 服务器上的所有工具
-安全可靠：通过上下文管理确保连接生命周期和资源释放
+## MCP 作用
+- **统一接口**：不同服务用同一协议接入，简化集成复杂度
+- **多语言&多平台**：支持任意语言编写的服务，支持本地、云端多种部署
+- **动态发现工具**：Agent 启动时自动获取 MCP 服务器上的所有工具
+- **安全可靠**：通过上下文管理确保连接生命周期和资源释放
 
 ## Strands Agents 的 MCP 优势
 
-**MCP Server 构建** - 使用 `FastMCP` 快速创建服务器  
-**MCP Client 集成** - 一行代码连接任何 MCP 服务  
-**工具自动发现** - 自动获取远程工具  
-**无缝集成** - Agent 透明调用远程服务
+- **MCP Server 构建** - 使用 `FastMCP` 快速创建服务器  
+- **MCP Client 集成** - 一行代码连接任何 MCP 服务  
+- **工具自动发现** - 自动获取远程工具  
+- **无缝集成** - Agent 透明调用远程服务
 
 ## Strands 支持的 MCP Server 连接方式
 
@@ -31,13 +31,12 @@ MCP（Model Context Protocol）是一种开放协议，标准化了 AI Agent 与
 ## Demo 介绍
 本 Demo 展示了一个基于MCP的美食菜谱智能Agent，它由提供美食菜谱数据服务的MCP Server和作为Client的Agent组成，通过MCP获取菜谱信息，实现菜系查询、菜谱推荐、食材搜索等核心功能。
 
-## Demo 架构
 
 ![Demo 架构图](mcp_architecture.png)
 
 
-
-## 1. 构建 MCP Server
+## Demo 流程
+### 1. 构建 MCP Server
 
 Strands 内置 FastMCP，让你轻松创建 MCP 服务器。以美食MCP Server为例：
 
@@ -75,7 +74,7 @@ if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
 
-## 2. 启动MCP Server
+### 2. 启动MCP Server
 
 ```bash
 python strands_mcp_server.py
@@ -87,11 +86,11 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
 ```
-**保持服务器运行**，Agent需要连接到此服务，查询菜单数据
+**保持服务器运行**，Agent 需要连接到此服务，查询菜谱数据
 
 
 
-## 2. 创建菜谱Agent
+### 3. 创建菜谱Agent
 
  `strands_cooking_agent.py`：
 
@@ -115,7 +114,7 @@ with mcp_client:
 
 ```
 
-## 3 ：运行 Agent
+### 4. 运行 Agent
 在新终端启动（保持服务器运行）：
 ```bash
 python strands_cooking_agent.py
@@ -130,19 +129,19 @@ Agent 启动后会显示：
 🥢 试试问：'有哪些菜系？' 或 '推荐一道川菜' 或 '用鸡肉能做什么菜？'
 ```
 
-## 4：测试Agent
+### 5. 测试 Agent
 
-测试1：查询菜系功能
+**测试1：查询菜系功能**
 ```
 有哪些菜系？
 ```
 
-测试2：菜谱推荐功能
+**测试2：菜谱推荐功能**
 ```
 推荐一道川菜
 ```
 
-测试3：食材搜索功能
+**测试3：食材搜索功能**
 ```
 用鸡肉能做什么菜？
 ```
@@ -154,4 +153,4 @@ Agent 启动后会显示：
 ✅ 实现了通过自然语言的无缝工具调用  
 ✅ 理解了 Strands Agents SDK 如何简化了 MCP 的复杂性 
 
-Strands Agents + MCP 让 AI Agent 具备了即插即用、跨语言、跨平台、多服务组合的强大能力。只需几行代码，通过MCP即让Strands可连接丰富的外部工具，快速构建智能体应用。
+Strands Agents + MCP 让 AI Agent 具备了即插即用、跨语言、跨平台、多服务组合的强大能力。只需几行代码，通过 MCP 即可让 Strands 连接丰富的外部工具，快速构建智能体应用。
