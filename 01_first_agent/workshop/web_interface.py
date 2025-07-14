@@ -84,7 +84,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "selected_model" not in st.session_state:
-    st.session_state.selected_model = "Claude 3.7 Sonnet"  # 默认选择
+    st.session_state.selected_model = "Amazon Nova Pro"  # 默认选择
 
 if "agent" not in st.session_state:
     model_id = MODELS[st.session_state.selected_model]
