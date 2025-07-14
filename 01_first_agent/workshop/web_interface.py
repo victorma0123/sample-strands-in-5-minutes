@@ -47,8 +47,8 @@ st.markdown("""
 
 # 可用的模型配置
 MODELS = {
-    "Amazon Nova Pro": "amazon.nova-pro-v1:0",
-    "Amazon Nova Rremier": "us.amazon.nova-premier-v1:0",
+    "Amazon Nova Pro": "us.amazon.nova-pro-v1:0",
+    "Amazon Nova Premier": "us.amazon.nova-premier-v1:0",
     "Claude 3.7 Sonnet": "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
 }
 
