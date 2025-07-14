@@ -11,15 +11,13 @@ Welcome to the "Strands Agents in 5 Minutes" tutorial series! This is a series f
 - Enable users to independently develop and deploy their own Agent demos
 
 ## Curriculum
-| No. | Session | Description | Demo | Duration | Level |
-|-----|---------|-------------|------|----------|-------|
-| 1 | Strands SDK First Agent | Strands core architecture Model/Tool/Prompt, Install Strands SDK, Create and run first Strands Agent | Use Python code to output Strands Agent core components description, install SDK, run a Strands Agent | 5 min | L100 |
-| 2 | Strands Session Management and State Maintenance | Strands Loop introduction, session history, session window, multi-turn dialogue implementation | Use Strands to implement multi-turn dialogue, save and print session history | 5 min | L200 |
-| 3 | Strands Build Custom Tools and Usage | Strands built-in tool calling, custom tool definition and registration | Develop a custom tool (like weather query) and integrate into Strands Agent, register and call built-in tools in Strands Agent | 5 min | L200 |
-| 4 | Strands Integration with MCP | Strands discovery, integration and usage of MCP Server | Register multiple MCP Servers to Agentic through MCP and implement calling | 5 min | L200 |
-| 5 | Strands Multi-Agent Collaboration | Implement multi-model calling based on Strands built-in Multi frameworks | Implement multi-model collaborative content creation through Strands multi-model calling | 5 min | L200 |
-| 6 | Strands Integration with Guardrails | Use Strands to integrate Guardrails, protect Agent behavior, enhance security capabilities | Configure Guardrails rules, trigger and observe Strands Agent protection behavior | 5 min | L200 |
-| 6 | Strands and A2A Protocol | Use A2A protocol to encapsulate Strands Agents for remote Agent collaboration | Use Strands and A2A SDK to develop remote agents and client agent, implement multi agents remote collaboration | 5 min | L300 |
+| No. | Session | Description | Demo | Duration | Level | Directory |
+|-----|---------|-------------|------|----------|-------|-----------|
+| 1 | Strands SDK First Agent | Strands core architecture Model/Tool/Prompt, Install Strands SDK, Create and run first Strands Agent | Use Python code to output Strands Agent core components description, install SDK, run a Strands Agent | 5 min | L100 | [01_first_agent](01_first_agent/) |
+| 2 | Strands Session Management and State Maintenance | Strands Loop introduction, session history, session window, multi-turn dialogue implementation | Use Strands to implement multi-turn dialogue, save and print session history | 5 min | L200 | [02_strands_session](02_strands_session/) |
+| 3 | Strands Build Custom Tools and Usage | Strands built-in tool calling, custom tool definition and registration | Develop a custom tool (like weather query) and integrate into Strands Agent, register and call built-in tools in Strands Agent | 5 min | L200 | [03_strands_tooluse](03_strands_tooluse/) |
+| 4 | Strands Integration with MCP | Strands discovery, integration and usage of MCP Server | Register multiple MCP Servers to Agentic through MCP and implement calling | 5 min | L200 | [04_strands_mcp](04_strands_mcp/) |
+| 6 | Strands and A2A Protocol | Use A2A protocol to encapsulate Strands Agents for remote Agent collaboration | Use Strands and A2A SDK to develop remote agents and client agent, implement multi agents remote collaboration | 5 min | L300 | [06_a2a_agents](06_a2a_agents/) |
 
 
 ## Tutorial Features
@@ -62,7 +60,10 @@ python3 first_agent.py
 
 ## Course Navigation
 - [Lesson 1: Build Your First Agent](01_first_agent/first_agent.md)
-- More lessons coming soon...
+- [Lesson 2: Strands Session Management and State Maintenance](02_strands_session/strands-session.py)
+- [Lesson 3: Strands Build Custom Tools and Usage](03_strands_tooluse/strands-tooluse.py)
+- [Lesson 4: Strands Integration with MCP](04_strands_mcp/README.md)
+- [Lesson 6: Strands and A2A Protocol](06_a2a_agents/)
 
 ## Contributing
 Welcome to submit Pull Requests to help improve this tutorial series!
