@@ -2,6 +2,7 @@
 # run_web.py
 """
 Strands AI助手 Web界面启动脚本
+
 """
 
 import subprocess
@@ -54,5 +55,7 @@ def main():
         print(f"❌ 启动失败: {e}")
         sys.exit(1)
 
+
+#python3 run_web.py
 if __name__ == "__main__":
     main()

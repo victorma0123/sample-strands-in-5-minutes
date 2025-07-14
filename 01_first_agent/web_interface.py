@@ -5,8 +5,14 @@ import logging
 from strands import Agent
 from strands_tools import current_time, http_request
 
-# 禁用strands的调试输出
-# logging.getLogger("strands").setLevel(logging.INFO)
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s | %(name)s | %(message)s",
+    handlers=[logging.StreamHandler()]
+)
+logging.getLogger("strands").setLevel(logging.DEBUG)
 
 # 设置页面配置
 st.set_page_config(
@@ -39,7 +45,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 初始化Agent
-@st.cache_resource
+# @st.cache_resource
 def init_agent():
     return Agent(
         system_prompt="""你是一个中国国内的生活助手，运用科学的知识回答各种问题。
@@ -78,9 +84,9 @@ def process_user_input(prompt):
         # 添加用户消息到历史
         st.session_state.messages.append({"role": "user", "content": prompt})
         
-        # 调用Agent
+        logging.info("prompt 是：" +prompt) 
         response = st.session_state.agent(prompt)
-        
+
         # 添加AI回复到历史
         st.session_state.messages.append({"role": "assistant", "content": response})
         
