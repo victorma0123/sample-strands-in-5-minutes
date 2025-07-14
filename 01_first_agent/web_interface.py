@@ -3,6 +3,7 @@ import streamlit as st
 import asyncio
 import logging
 from strands import Agent
+from strands.models import BedrockModel
 from strands_tools import current_time, http_request
 
 
@@ -16,7 +17,7 @@ logging.getLogger("strands").setLevel(logging.DEBUG)
 
 # 设置页面配置
 st.set_page_config(
-    page_title="Strands AI助手",
+    page_title="Strands Agents 小助手",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -44,23 +45,49 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# 可用的模型配置
+MODELS = {
+    "Claude 3.7 Sonnet": "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "Amazon Pro": "us.amazon.nova-pro-v1:0"
+}
+
 # 初始化Agent
-# @st.cache_resource
-def init_agent():
-    return Agent(
-        system_prompt="""你是一个中国国内的生活助手，运用科学的知识回答各种问题。
-        请使用tool来回答问题，如果用户问问题，请用http_request工具，查询中国国内的百科网站。
-        """,
-        tools=[current_time, http_request],
-        callback_handler=None  # 禁用回调处理器，使用流式输出
-    )
+def init_agent(model_id=None):
+    # 如果指定了模型ID，使用Bedrock模型
+    if model_id:
+        model = BedrockModel(model_id=model_id)
+        return Agent(
+            system_prompt="""你是一个中国国内的生活助手，运用科学的知识回答各种问题。
+            请使用tool来回答问题，如果用户问问题，请用http_request工具，查询中国国内的百科网站。
+            """,
+            model=model,
+            tools=[current_time, http_request],
+            callback_handler=None  # 禁用回调处理器，使用流式输出
+        )
+    else:
+        # 默认使用系统配置的模型
+        return Agent(
+            system_prompt="""
+            You are a lifestyle assistant for users in mainland China, 
+            proficient in scientific knowledge and capable of addressing various everyday questions. 
+            When users ask questions, prioritize using the http_request tool to query  Chinese websites (such as Baidu Baike, China Science Communication Network, etc.) to obtain the most current and accurate information. 
+            Your responses should be based on scientific facts, concise, and appropriate for Chinese cultural context. 
+            When encountering uncertain information, clearly inform the user and provide reliable information that is known.
+            """,
+            tools=[current_time, http_request],
+            callback_handler=None  # 禁用回调处理器，使用流式输出
+        )
 
 # 初始化会话状态
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = "Claude 3.7 Sonnet"  # 默认选择
+
 if "agent" not in st.session_state:
-    st.session_state.agent = init_agent()
+    model_id = MODELS[st.session_state.selected_model]
+    st.session_state.agent = init_agent(model_id)
 
 async def process_user_input_streaming(prompt):
     """使用异步流式处理用户输入"""
@@ -126,6 +153,23 @@ def main():
         
         # 添加提示
         st.caption("在输入框中输入上述问题来获取回答")
+        
+        st.markdown("---")
+        
+        # 模型选择下拉框
+        st.subheader("模型选择")
+        selected_model = st.selectbox(
+            "选择模型",
+            options=list(MODELS.keys()),
+            index=list(MODELS.keys()).index(st.session_state.selected_model)
+        )
+        
+        # 如果模型选择改变，重新初始化Agent
+        if selected_model != st.session_state.selected_model:
+            st.session_state.selected_model = selected_model
+            model_id = MODELS[selected_model]
+            st.session_state.agent = init_agent(model_id)
+            st.success(f"已切换到 {selected_model} 模型")
         
         st.markdown("---")
         if st.button("清空对话历史"):
