@@ -12,17 +12,6 @@
 
 "Agents-as-Tools"，允许将一个 agent 作为另一个 agent 的工具使用。这种模式使得创建复杂的 multi-agent 系统变得简单，其中每个 agent 都可以专注于特定的任务或领域。
 
-### Agents-as-Tools 的关键概念
-
-- **工具装饰器**：使用 `@tool` 装饰器将函数转换为可由 agent 使用的工具。这些函数可以包含对其他 agent 的调用。
-
-- **专业化与协作**：每个 agent 可以专注于特定领域，而协调器 agent 可以根据查询类型选择合适的专业 agent。
-
-- **层次结构**：创建 agent 层次结构，其中高级 agent 可以调用低级 agent 来执行特定任务。
-
-- **动态路由**：协调器 agent 可以动态决定将查询路由到哪个专业 agent，实现智能任务分配。
-
-
 ## Demo 介绍
 
 这个教学助手系统由一个中央协调器和多个专业智能体组成，能够根据用户查询的性质，将问题路由到最合适的专家智能体处理。无论是数学计算、编程问题、语言翻译还是英语写作，系统都能智能地选择合适的专家来回答，为用户提供准确、专业的帮助。
@@ -47,6 +36,18 @@
 - [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
 - [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
 - [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
+
+
+
+### Agents-as-Tools 的关键概念
+
+- **工具装饰器**：使用 `@tool` 装饰器将函数转换为可由 agent 使用的工具。这些函数可以包含对其他 agent 的调用。
+
+- **专业化与协作**：每个 agent 可以专注于特定领域，而协调器 agent 可以根据查询类型选择合适的专业 agent。
+
+- **层次结构**：创建 agent 层次结构，其中高级 agent 可以调用低级 agent 来执行特定任务。
+
+- **动态路由**：协调器 agent 可以动态决定将查询路由到哪个专业 agent，实现智能任务分配。
 
 ### 实现 Agents-as-Tools 的步骤
 
