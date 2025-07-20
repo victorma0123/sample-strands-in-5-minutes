@@ -92,7 +92,10 @@ multi-agent 系统利用多种工具提供专业化功能：
 6. `file operations`：用于读取和写入文件的工具，如 `file_read` 和 `file_write`，使 agents 能够根据需要访问和修改文件内容。
 
 ## 架构图
+![Demo 架构图](mcp_architecture.png)
 
+
+<!-- 
 ```mermaid
 flowchart TD
     Orchestrator["教学助手<br/>(协调器)<br/><br/>将查询路由到专家的<br/>中央协调器"]
@@ -113,7 +116,8 @@ flowchart TD
     GenAssistant --> NoTools["无专用工具<br/><br/>无特定工具的通用知识"]
     
     classDef hidden stroke-width:0px,fill:none
-```
+``` 
+-->
 
 ## 工作原理和组件实现
 
