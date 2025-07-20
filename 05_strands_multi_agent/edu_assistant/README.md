@@ -1,4 +1,5 @@
-# 教学助手 - Strands Multi-Agent 架构示例
+# Strands in 5 minutes  
+
 
 大家好，欢迎来到5分钟上手Strands系列！  
 在本次教程中，我们将探索Strands Agents 的强大Multi-Agent, Strands Agents 提供提供了多种Multi-Agent协作模式。包括`Agents as Tools`, `Swarm`,`Graph`等等。
