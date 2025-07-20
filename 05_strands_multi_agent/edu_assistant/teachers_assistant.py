@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-# 📁 Teacher's Assistant Strands Agent
+# 📁 教学助手 Strands Agent
 
-A specialized Strands agent that is the orchestrator to utilize sub-agents and tools at its disposal to answer a user query.
+一个专门的Strands agent，作为协调器利用其可用的子agents和工具来回答用户查询。
 
-## What This Example Shows
+## 这个示例展示了什么
 
 """
 
@@ -19,30 +19,30 @@ from no_expertise import general_assistant
 
 # Define a focused system prompt for file operations
 TEACHER_SYSTEM_PROMPT = """
-You are TeachAssist, a sophisticated educational orchestrator designed to coordinate educational support across multiple subjects. Your role is to:
+你是教学助手，一个复杂的教育协调器，旨在协调多个学科的教育支持。你的角色是：
 
-1. Analyze incoming student queries and determine the most appropriate specialized agent to handle them:
-   - Math Agent: For mathematical calculations, problems, and concepts
-   - English Agent: For writing, grammar, literature, and composition
-   - Language Agent: For translation and language-related queries
-   - Computer Science Agent: For programming, algorithms, data structures, and code execution
-   - General Assistant: For all other topics outside these specialized domains
+1. 分析传入的学生查询并确定最合适的专业agent来处理它们：
+   - 数学Agent：用于数学计算、问题和概念
+   - 英语Agent：用于写作、语法、文学和作文
+   - 语言Agent：用于翻译和语言相关查询
+   - 计算机科学Agent：用于编程、算法、数据结构和代码执行
+   - 通用助手：用于这些专业领域之外的所有其他主题
 
-2. Key Responsibilities:
-   - Accurately classify student queries by subject area
-   - Route requests to the appropriate specialized agent
-   - Maintain context and coordinate multi-step problems
-   - Ensure cohesive responses when multiple agents are needed
+2. 主要职责：
+   - 准确按学科领域分类学生查询
+   - 将请求路由到适当的专业agent
+   - 维护上下文并协调多步骤问题
+   - 当需要多个agent时确保回应的连贯性
 
-3. Decision Protocol:
-   - If query involves calculations/numbers → Math Agent
-   - If query involves writing/literature/grammar → English Agent
-   - If query involves translation → Language Agent
-   - If query involves programming/coding/algorithms/computer science → Computer Science Agent
-   - If query is outside these specialized areas → General Assistant
-   - For complex queries, coordinate multiple agents as needed
+3. 决策协议：
+   - 如果查询涉及计算/数字 → 数学Agent
+   - 如果查询涉及写作/文学/语法 → 英语Agent
+   - 如果查询涉及翻译 → 语言Agent
+   - 如果查询涉及编程/编码/算法/计算机科学 → 计算机科学Agent
+   - 如果查询在这些专业领域之外 → 通用助手
+   - 对于复杂查询，根据需要协调多个agent
 
-Always confirm your understanding before routing to ensure accurate assistance.
+在路由之前始终确认你的理解，以确保准确的协助。
 用中文交流
 """
 
@@ -56,16 +56,16 @@ teacher_agent = Agent(
 
 # Example usage
 if __name__ == "__main__":
-    print("\n📁 Teacher's Assistant Strands Agent 📁\n")
-    print("Ask a question in any subject area, and I'll route it to the appropriate specialist.")
-    print("Type 'exit' to quit.")
+    print("\n📁 教学助手 Strands Agent 📁\n")
+    print("在任何学科领域提出问题，我会将其路由到适当的专家。")
+    print("输入'exit'退出。")
 
     # Interactive loop
     while True:
         try:
             user_input = input("\n> ")
             if user_input.lower() == "exit":
-                print("\nGoodbye! 👋")
+                print("\n再见！👋")
                 break
 
             response = teacher_agent(
@@ -77,8 +77,8 @@ if __name__ == "__main__":
             print(content)
             
         except KeyboardInterrupt:
-            print("\n\nExecution interrupted. Exiting...")
+            print("\n\n执行被中断。正在退出...")
             break
         except Exception as e:
-            print(f"\nAn error occurred: {str(e)}")
-            print("Please try asking a different question.")
+            print(f"\n发生错误：{str(e)}")
+            print("请尝试提出不同的问题。")

@@ -1,6 +1,57 @@
-# 教学助手 - Strands Multi-Agent 架构示例
+# Strands in 5 minutes  
+大家好，欢迎来到5分钟上手Strands系列！
 
-本示例展示了如何使用 Strands Agents 实现 multi-agent 架构，其中专业化的 agents 在中央协调器的协调下共同工作。系统使用自然语言路由，根据主题专业知识将查询定向到最合适的专业化 agent。
+## Strands SDK 中的 Agents-as-Tools 模式
+
+Strands SDK 提供了一种强大的模式，称为 "Agents-as-Tools"，允许将一个 agent 作为另一个 agent 的工具使用。这种模式使得创建复杂的 multi-agent 系统变得简单，其中每个 agent 都可以专注于特定的任务或领域。
+
+### Agents-as-Tools 的关键概念
+
+1. **工具装饰器**：使用 `@tool` 装饰器将函数转换为可由 agent 使用的工具。这些函数可以包含对其他 agent 的调用。
+
+2. **专业化与协作**：每个 agent 可以专注于特定领域，而协调器 agent 可以根据查询类型选择合适的专业 agent。
+
+3. **层次结构**：创建 agent 层次结构，其中高级 agent 可以调用低级 agent 来执行特定任务。
+
+4. **动态路由**：协调器 agent 可以动态决定将查询路由到哪个专业 agent，实现智能任务分配。
+
+### 实现 Agents-as-Tools 的步骤
+
+1. **创建专业化 agent 函数**：
+```python
+@tool
+def specialized_agent(query: str) -> str:
+    agent = Agent(
+        system_prompt="专业化指令...",
+        tools=[relevant_tools]
+    )
+    response = agent(query)
+    return str(response)
+```
+
+2. **创建协调器 agent**：
+```python
+orchestrator = Agent(
+    system_prompt="协调指令...",
+    tools=[specialized_agent1, specialized_agent2, ...]
+)
+```
+
+3. **使用协调器处理查询**：
+```python
+response = orchestrator(user_query)
+```
+
+### Agents-as-Tools 的优势
+
+- **模块化**：每个 agent 可以独立开发和测试
+- **专业化**：每个 agent 可以专注于特定领域，提高性能
+- **可扩展性**：轻松添加新的专业 agent 而无需修改现有代码
+- **资源效率**：只有在需要时才调用专业 agent
+- **灵活性**：可以根据需要动态组合不同的 agent
+
+## Demo 说明
+本示例展示了如何使用 Strands Agents 实现 multi-agent 架构，其中专业化的 agents 在中央协调器(orchestrator)的协调下共同工作。系统使用自然语言路由，根据主题专业知识将查询定向到最合适的专业化 agent。
 
 ## 概述
 
@@ -20,6 +71,7 @@
 - [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
 - [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
 - [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
+
 
 ## 工具概述
 
@@ -60,10 +112,6 @@ flowchart TD
     
     classDef hidden stroke-width:0px,fill:none
 ```
-
-## 工作原理和组件实现
-
-这个示例实现了一个 multi-agent 架构，其中专业化的 agents 在中央协调器的协调下共同工作。让我们探讨这个系统的工作原理和每个组件的实现方式。
 
 ### 1. 教学助手（协调器）
 
@@ -135,7 +183,7 @@ def math_assistant(query: str) -> str:
 ```
 > 解决二次方程 x^2 + 5x + 6 = 0
 
-路由到数学助手
+已路由至数学助手
 
 要解决二次方程 x² + 5x + 6 = 0，我将使用二次公式：
 
@@ -168,7 +216,7 @@ x₂ = (-5 - 1) / 2 = -6/2 = -3
 ```
 > 编写一个 Python 函数来检查字符串是否为回文
 
-路由到计算机科学助手
+已路由至计算机科学助手
 
 这是一个检查字符串是否为回文的 Python 函数：
 
@@ -209,7 +257,7 @@ for string in test_strings:
 ```
 > 将 "Hello, how are you?" 翻译成西班牙语
 
-路由到语言助手
+已路由至语言助手
 
 "Hello, how are you?" 的西班牙语翻译是：
 
@@ -223,6 +271,20 @@ for string in test_strings:
 
 如果您与多人交谈，您应该说 "¿cómo están ustedes?"（或在西班牙说 "¿cómo estáis?"）。
 ```
+
+## Agents-as-Tools 的高级用例
+
+除了基本的路由功能外，Agents-as-Tools 模式还支持多种高级用例：
+
+1. **递归工具调用**：专业 agent 可以调用其他专业 agent，创建复杂的工具链。
+
+2. **自适应专业化**：协调器可以根据查询的复杂性选择不同的专业 agent 组合。
+
+3. **并行处理**：多个专业 agent 可以并行工作，然后由协调器合并结果。
+
+4. **渐进式细化**：协调器可以首先使用一个专业 agent，然后根据初始结果选择其他专业 agent。
+
+5. **混合专业知识**：对于跨领域问题，协调器可以从多个专业 agent 收集信息，然后提供综合回答。
 
 ## 扩展示例
 

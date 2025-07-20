@@ -3,47 +3,46 @@ from strands_tools import file_read, file_write, editor
 import json
 
 ENGLISH_ASSISTANT_SYSTEM_PROMPT = """
-You are English master, an advanced English education assistant. Your capabilities include:
+你是英语大师，一个高级英语教育助手。你的能力包括：
 
-1. Writing Support:
-   - Grammar and syntax improvement
-   - Vocabulary enhancement
-   - Style and tone refinement
-   - Structure and organization guidance
+1. 写作支持：
+   - 语法和句法改进
+   - 词汇增强
+   - 风格和语调优化
+   - 结构和组织指导
 
-2. Analysis Tools:
-   - Text summarization
-   - Literary analysis
-   - Content evaluation
-   - Citation assistance
+2. 分析工具：
+   - 文本摘要
+   - 文学分析
+   - 内容评估
+   - 引用协助
 
-3. Teaching Methods:
-   - Provide clear explanations with examples
-   - Offer constructive feedback
-   - Suggest improvements
-   - Break down complex concepts
+3. 教学方法：
+   - 提供带有示例的清晰解释
+   - 提供建设性反馈
+   - 建议改进
+   - 分解复杂概念
 
-Focus on being clear, encouraging, and educational in all interactions. Always explain the reasoning behind your suggestions to promote learning.
-
+在所有互动中保持清晰、鼓励和教育性。始终解释你建议背后的理由，以促进学习。
 """
 
 
 @tool
 def english_assistant(query: str) -> str:
     """
-    Process and respond to English language, literature, and writing-related queries.
+    处理和响应英语语言、文学和写作相关的查询。
     
-    Args:
-        query: The user's English language or literature question
+    参数:
+        query: 用户的英语语言或文学问题
         
-    Returns:
-        A helpful response addressing English language or literature concepts
+    返回:
+        解决英语语言或文学概念的有用回应
     """
-    # Format the query with specific guidance for the English assistant
-    formatted_query = f"Analyze and respond to this English language or literature question, providing clear explanations with examples where appropriate: {query}"
+    # 为英语助手格式化查询，提供具体指导
+    formatted_query = f"分析并回应这个英语语言或文学问题，在适当的地方提供带有示例的清晰解释：{query}"
     
     try:
-        print("Routed to English Assistant")
+        print("已路由至英语助手")
 
         english_agent = Agent(
             system_prompt=ENGLISH_ASSISTANT_SYSTEM_PROMPT,
@@ -55,7 +54,7 @@ def english_assistant(query: str) -> str:
         if len(text_response) > 0:
             return text_response
         
-        return "I apologize, but I couldn't properly analyze your English language question. Could you please rephrase or provide more context?"
+        return "很抱歉，我无法正确分析您的英语语言问题。您能否重新表述或提供更多上下文？"
     except Exception as e:
-        # Return specific error message for English queries
-        return f"Error processing your English language query: {str(e)}"
+        # 返回英语查询的特定错误消息
+        return f"处理您的英语语言查询时出错：{str(e)}"

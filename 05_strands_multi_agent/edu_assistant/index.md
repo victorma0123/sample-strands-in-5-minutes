@@ -1,4 +1,5 @@
-# Multi-Agent 示例
+# Strands in 5 minutes  
+大家好，欢迎来到5分钟上手Strands系列！
 
 本目录包含 Multi-Agent 示例架构的实现文件，其中专业化的 agents 在中央协调器的协调下共同工作。
 
