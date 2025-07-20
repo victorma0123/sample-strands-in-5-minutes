@@ -27,14 +27,7 @@
 
 - **灵活性**：可以根据需要动态组合不同的 agent
 
-## 实现文件
 
-- [teachers_assistant.py](teachers_assistant.py) - 主要的协调 agent，负责将查询路由到专业化 agents
-- [math_assistant.py](math_assistant.py) - 处理数学查询的专业化 agent
-- [language_assistant.py](language_assistant.py) - 负责语言翻译任务的专业化 agent
-- [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
-- [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
-- [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
 
 
 
@@ -75,21 +68,6 @@ orchestrator = Agent(
 response = orchestrator(user_query)
 ```
 
-## 工具概述
-
-multi-agent 系统利用多种工具提供专业化功能：
-
-1. `calculator`：由 SymPy 提供支持的高级数学工具，提供全面的计算功能，包括表达式求值、方程求解、微分、积分、极限、级数展开和矩阵运算。
-
-2. `python_repl`：在具有交互式 PTY 支持和状态持久性的 REPL 环境中执行 Python 代码，允许运行代码片段、数据分析和复杂逻辑执行。
-
-3. `shell`：具有 PTY 支持的交互式 shell，用于实时命令执行，支持单个命令、多个顺序命令、并行执行和带有实时输出的错误处理。
-
-4. `http_request`：向外部 API 发出 HTTP 请求，支持全面的身份验证，包括 Bearer tokens、Basic auth、JWT、AWS SigV4 和企业身份验证模式。
-
-5. `editor`：高级文件编辑工具，可创建和修改代码文件，具有语法高亮、精确字符串替换和代码导航功能。
-
-6. `file operations`：用于读取和写入文件的工具，如 `file_read` 和 `file_write`，使 agents 能够根据需要访问和修改文件内容。
 
 ##  demo 架构
 
@@ -119,7 +97,35 @@ flowchart TD
 
 这个示例实现了一个 multi-agent 架构，其中专业化的 agents 在中央协调器的协调下共同工作。让我们探讨这个系统的工作原理和每个组件的实现方式。
 
-### 1. 教学助手（协调器）
+## 实现文件
+
+- [teachers_assistant.py](teachers_assistant.py) - 主要的协调 agent，负责将查询路由到专业化 agents
+- [math_assistant.py](math_assistant.py) - 处理数学查询的专业化 agent
+- [language_assistant.py](language_assistant.py) - 负责语言翻译任务的专业化 agent
+- [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
+- [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
+- [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
+
+
+
+
+## 工具概述
+
+multi-agent 系统利用多种工具提供专业化功能：
+
+1. `calculator`：由 SymPy 提供支持的高级数学工具，提供全面的计算功能，包括表达式求值、方程求解、微分、积分、极限、级数展开和矩阵运算。
+
+2. `python_repl`：在具有交互式 PTY 支持和状态持久性的 REPL 环境中执行 Python 代码，允许运行代码片段、数据分析和复杂逻辑执行。
+
+3. `shell`：具有 PTY 支持的交互式 shell，用于实时命令执行，支持单个命令、多个顺序命令、并行执行和带有实时输出的错误处理。
+
+4. `http_request`：向外部 API 发出 HTTP 请求，支持全面的身份验证，包括 Bearer tokens、Basic auth、JWT、AWS SigV4 和企业身份验证模式。
+
+5. `editor`：高级文件编辑工具，可创建和修改代码文件，具有语法高亮、精确字符串替换和代码导航功能。
+
+6. `file operations`：用于读取和写入文件的工具，如 `file_read` 和 `file_write`，使 agents 能够根据需要访问和修改文件内容。
+
+## 1. 教学助手（协调器）
 
 `teacher_assistant` 作为中央协调器，分析传入的自然语言查询，确定最合适的专业化 agent，并将查询路由到该 agent。所有这些都通过 agent 的 TEACHER_SYSTEM_PROMPT 中概述的指令完成。此外，每个专业化 agent 都是协调器 agent 的工具数组的一部分。
 
@@ -136,7 +142,7 @@ teacher_agent = Agent(
 
 - 协调器通过将 `callback_handler` 设置为 `None` 来抑制其中间输出。如果没有这种抑制，默认的 `PrintingStreamHandler` 会将所有输出打印到 stdout，从而创建一个混乱的体验，包含来自每个 agent 思考过程和工具调用的重复信息。
 
-### 2. 专业化 Agents
+## 2. 专业化 Agents
 
 每个专业化 agent 都使用特定领域功能作为 Strands 工具实现。这种架构允许我们初始化每个 agent，使其专注于特定领域，拥有专业知识，并使用特定工具处理其专业领域内的查询。例如：
 
