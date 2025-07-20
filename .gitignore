@@ -1,3 +1,4 @@
 .env
 /.vscode
 .kiro
+/05_strands_multi_agent/reference
