@@ -12,6 +12,10 @@
 
 "Agents-as-Tools"，允许将一个 agent 作为另一个 agent 的工具使用。这种模式使得创建复杂的 multi-agent 系统变得简单，其中每个 agent 都可以专注于特定的任务或领域。
 
+## 架构图
+![Demo 架构图](./images/architecture.png)
+
+
 
 ### Agents-as-Tools 的关键概念
 
@@ -36,8 +40,6 @@
 ## Demo 介绍
 
 这个教学助手系统由一个中央协调器和多个专业智能体组成，能够根据用户查询的性质，将问题路由到最合适的专家智能体处理。无论是数学计算、编程问题、语言翻译还是英语写作，系统都能智能地选择合适的专家来回答，为用户提供准确、专业的帮助。
-
-
 
 ## 实现文件
 
@@ -91,11 +93,8 @@ multi-agent 系统利用多种工具提供专业化功能：
 
 6. `file operations`：用于读取和写入文件的工具，如 `file_read` 和 `file_write`，使 agents 能够根据需要访问和修改文件内容。
 
-## 架构图
-![Demo 架构图](./images/architecture.png)
+##  demo 架构
 
-
-<!-- 
 ```mermaid
 flowchart TD
     Orchestrator["教学助手<br/>(协调器)<br/><br/>将查询路由到专家的<br/>中央协调器"]
@@ -117,7 +116,6 @@ flowchart TD
     
     classDef hidden stroke-width:0px,fill:none
 ``` 
--->
 
 ## 工作原理和组件实现
 
