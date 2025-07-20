@@ -92,7 +92,7 @@ multi-agent 系统利用多种工具提供专业化功能：
 6. `file operations`：用于读取和写入文件的工具，如 `file_read` 和 `file_write`，使 agents 能够根据需要访问和修改文件内容。
 
 ## 架构图
-![Demo 架构图](mcp_architecture.png)
+![Demo 架构图](./images/architecture.png)
 
 
 <!-- 
