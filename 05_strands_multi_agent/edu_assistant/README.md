@@ -1,5 +1,38 @@
-# Strands in 5 minutes  
+# 教学助手 - Strands Multi-Agent 架构示例
+
 大家好，欢迎来到5分钟上手Strands系列！
+
+在本次教程中，我们将探索Strands的强大功能之一：Multi-Agent架构和Agents-as-Tools模式。我们将通过构建一个教育领域的智能助手系统，展示如何让多个专业化的AI智能体协同工作，共同解决复杂问题。
+
+这个教学助手系统由一个中央协调器和多个专业智能体组成，能够根据用户查询的性质，将问题路由到最合适的专家智能体处理。无论是数学计算、编程问题、语言翻译还是英语写作，系统都能智能地选择合适的专家来回答，为用户提供准确、专业的帮助。
+
+通过本教程，您将学习如何：
+- 设计和实现多智能体系统
+- 使用@tool装饰器将智能体封装为工具
+- 创建智能路由机制
+- 为不同领域配置专业化的智能体
+- 处理跨领域的复杂查询
+
+让我们开始这段激动人心的Strands Multi-Agent之旅吧！
+
+## 概述
+
+| 特性              | 描述                                        |
+| ----------------- | ------------------------------------------ |
+| **使用的工具**     | calculator, python_repl, shell, http_request, editor, file operations |
+| **Agent 结构**    | Multi-Agent 架构                           |
+| **复杂度**        | 中级                                       |
+| **交互方式**      | 命令行界面                                 |
+| **关键技术**      | 动态查询路由                               |
+
+## 实现文件
+
+- [teachers_assistant.py](teachers_assistant.py) - 主要的协调 agent，负责将查询路由到专业化 agents
+- [math_assistant.py](math_assistant.py) - 处理数学查询的专业化 agent
+- [language_assistant.py](language_assistant.py) - 负责语言翻译任务的专业化 agent
+- [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
+- [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
+- [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
 
 ## Strands SDK 中的 Agents-as-Tools 模式
 
@@ -50,29 +83,6 @@ response = orchestrator(user_query)
 - **资源效率**：只有在需要时才调用专业 agent
 - **灵活性**：可以根据需要动态组合不同的 agent
 
-## Demo 说明
-本示例展示了如何使用 Strands Agents 实现 multi-agent 架构，其中专业化的 agents 在中央协调器(orchestrator)的协调下共同工作。系统使用自然语言路由，根据主题专业知识将查询定向到最合适的专业化 agent。
-
-## 概述
-
-| 特性              | 描述                                        |
-| ----------------- | ------------------------------------------ |
-| **使用的工具**     | calculator, python_repl, shell, http_request, editor, file operations |
-| **Agent 结构**    | Multi-Agent 架构                           |
-| **复杂度**        | 中级                                       |
-| **交互方式**      | 命令行界面                                 |
-| **关键技术**      | 动态查询路由                               |
-
-## 实现文件
-
-- [teachers_assistant.py](teachers_assistant.py) - 主要的协调 agent，负责将查询路由到专业化 agents
-- [math_assistant.py](math_assistant.py) - 处理数学查询的专业化 agent
-- [language_assistant.py](language_assistant.py) - 负责语言翻译任务的专业化 agent
-- [english_assistant.py](english_assistant.py) - 负责英语语法和理解的专业化 agent
-- [computer_science_assistant.py](computer_science_assistant.py) - 负责计算机科学和编程任务的专业化 agent
-- [no_expertise.py](no_expertise.py) - 处理特定领域之外查询的通用 assistant
-
-
 ## 工具概述
 
 multi-agent 系统利用多种工具提供专业化功能：
@@ -113,6 +123,10 @@ flowchart TD
     classDef hidden stroke-width:0px,fill:none
 ```
 
+## 工作原理和组件实现
+
+这个示例实现了一个 multi-agent 架构，其中专业化的 agents 在中央协调器的协调下共同工作。让我们探讨这个系统的工作原理和每个组件的实现方式。
+
 ### 1. 教学助手（协调器）
 
 `teacher_assistant` 作为中央协调器，分析传入的自然语言查询，确定最合适的专业化 agent，并将查询路由到该 agent。所有这些都通过 agent 的 TEACHER_SYSTEM_PROMPT 中概述的指令完成。此外，每个专业化 agent 都是协调器 agent 的工具数组的一部分。
@@ -150,7 +164,7 @@ def math_assistant(query: str) -> str:
     formatted_query = f"请解决以下数学问题，显示所有步骤并清晰解释概念：{query}"
     
     try:
-        print("路由到数学助手")
+        print("已路由至数学助手")
         # 创建具有计算器功能的数学 agent
         math_agent = Agent(
             system_prompt=MATH_ASSISTANT_SYSTEM_PROMPT,
