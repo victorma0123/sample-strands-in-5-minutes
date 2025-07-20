@@ -6,16 +6,12 @@
 
 本节介绍`Agents as Tools`模式。我们将通过构建一个教育领域的智能助手系统，展示如何让多个专业化的AI智能体协同工作，共同解决复杂问题。
 
-
-
-
-
+让我们开始这段激动人心的Strands Multi-Agent之旅吧！
 
 ##  Agents-as-Tools 模式
 
 
 
-让我们开始这段激动人心的Strands Multi-Agent之旅吧！
 
 "Agents-as-Tools"，允许将一个 agent 作为另一个 agent 的工具使用。这种模式使得创建复杂的 multi-agent 系统变得简单，其中每个 agent 都可以专注于特定的任务或领域。
 
