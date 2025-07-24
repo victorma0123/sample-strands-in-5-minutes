@@ -179,8 +179,6 @@ graph TD
 
 **系统要求**：Unity 2022.3+ | Python 3.11 | macOS | AWS credentials
 
-**视频教程**：[Unity Strands Agent 功能演示](https://www.bilibili.com/video/BV1jgGJzhEZs/)
-
 ![Unity Strands Agent 中文界面](Assets/Resources/unity_strands_agent_demo.png)
 
 ## 详细配置
@@ -458,8 +456,6 @@ graph TD
    ```
 
 **Requirements**: Unity 2022.3+ | Python 3.11 | macOS | AWS credentials
-
-**Video Demo**: [Unity Strands Agent Demo](https://www.bilibili.com/video/BV1jgGJzhEZs/)
 
 ![Unity Strands Agent English Interface](Assets/Resources/unity_strands_agent_demo_en.png)
 
