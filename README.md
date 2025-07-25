@@ -30,6 +30,7 @@
 | No. | Demo Name | Description | Application Scenario | Duration | 目录 |
 |-----|-----------|-------------|---------------------|----------|------|
 | 1 | Strands 与 Dify 工作流集成 | Strands 中接入作为 MCP 服务的 dify 工作流 | 将dify工作流作为mcp接入strands agent，构建一个患者接收分诊agent。基于Strands Web UI开发，使用Python MCP SDK 实现 Dify workflow mcp | 5 min | [demo/difymcp_strandsagent_demo](demo/difymcp_strandsagent_demo/) |
+| 2 | Unity Strands Agent 插件 | 基于 Strands SDK 的 Unity 编辑器 AI 插件，通过 Python.NET 集成，支持 MCP 协议扩展 | 在 Unity 编辑器中直接与 AI 对话，获得 Unity 开发问题解答、学习指导和项目分析建议 | 5 min | [demo/02_unity_strands_agent](demo/02_unity_strands_agent/) |
 
 ## 教程特点
 - **简洁高效**: 每节控制在5分钟内，快速上手
@@ -106,6 +107,7 @@ python3 first_agent.py
 
 ### 实际应用演示 (Demo)
 - [Demo1：Strands 与 Dify 工作流集成](demo/difymcp_strandsagent_demo/) - 患者分诊智能Agent系统
+- [Demo2：Unity Strands Agent 插件](demo/02_unity_strands_agent/) - Unity 编辑器 AI 助手插件
 
 ### 特色功能
 - **Web界面支持**: 第一课和第五课提供基于Streamlit的Web交互界面
@@ -123,6 +125,7 @@ python3 first_agent.py
 - **A2A远程协作**: 支持Agent间的远程通信和协作，包含React UI界面
 - **Dify工作流集成**: 将Dify工作流作为MCP服务集成到Strands Agent
 - **患者分诊系统**: 基于Dify MCP的医疗领域智能分诊应用
+- **Unity开发助手**: 基于Strands SDK的Unity编辑器AI插件，支持MCP协议扩展
 - **多模态支持**: 支持文本、语音、图像等多种输入输出模式
 
 ## 参与贡献
