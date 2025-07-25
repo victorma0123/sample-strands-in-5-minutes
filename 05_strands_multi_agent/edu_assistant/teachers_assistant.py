@@ -10,6 +10,7 @@
 
 from strands import Agent
 from strands_tools import file_read, file_write, editor
+import os
 from english_assistant import english_assistant
 from language_assistant import language_assistant
 from math_assistant import math_assistant
@@ -45,6 +46,9 @@ TEACHER_SYSTEM_PROMPT = """
 在路由之前始终确认你的理解，以确保准确的协助。
 用中文交流
 """
+
+# 设置环境变量以避免空内容块
+os.environ["ANTHROPIC_API_VERSION"] = "2023-06-01"
 
 # Create a file-focused agent with selected tools
 teacher_agent = Agent(
