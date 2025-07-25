@@ -1,0 +1,48 @@
+各位老师，这是今天上午的会议纪要
+
+【沟通内容】
+整体性能测试基本完成
+
+1. 项目时间点确定
+    a. 11月份完成项目
+    b. 8-10月实施期，最多2.5个月时间
+
+2. 存储方案讨论
+    a. 本地盘：最稳定，但也会掉；机器重启后会挂载新的
+    b.EBS：HDFS写入时偶有报错，7万写入量会掉到3-5千，等几秒后恢复正常；机器故障时可通过stop/start恢复，不影响数据
+    c. HBase：优先使用本地盘，其次EBS；倾向用DDB替代HBase
+    d. DDB：provision模式预热后扩容慢（auto-scaling问题）
+
+3. MSK扩容经验
+    a. broker从3扩到6个，耗时约30分钟
+    b. 180个分区均衡到6个节点，时间不确定，几十T数据量rebalance时间差异很大
+    c. 腾讯云扩容经验：游戏上线前提前两周扩容，横向扩容
+    d. 扩缩容时间参考：腾讯云170小时，阿里云6小时
+
+4. Redshift方案
+    a. 上线后启动自建worker写入，不使用spark
+    b. 实际测试：8个RPU平均40多万写入
+    c. 大客户案例：2PB数据，Spark Streaming，日处理200亿条，40个RPU一天可处理2000亿数据，端到端延迟1-3分钟
+    d. 与EMR结合：中间层EMR Spark实时写入redshift，ODS/DWS在spark处理
+    e. Redshift vs StarRocks 目前不能确定用量分布
+
+5. 权限和元数据管理
+    a. EMR元数据使用Glue，权限用开源Ranger（库表级别）
+    b. SSO identity center管理权限需跟进
+    c. Athena成本担忧，需设置扫描数据量阈值
+    d. Ranger与Glue集成不完整，存在适配问题，测试时遇到问题往群里丢
+
+【待办事项】
+1. 下周测试配置
+    a. 修改EMR配置
+    b. 调试监控系统
+
+2. 技术细节待确认
+    a. MSK EB Rebalance时间评估和实现机制
+    b. DynamoDB provision模式下扩容速度跟进
+    c. Athena超量SQL计费规则确认
+    d. Redshift数据量统计（已经提供给BD）
+
+3. 权限集成对接
+    a. identity center跟进权限配置情况
+    b. Ranger与Glue Catalog适配问题跟进

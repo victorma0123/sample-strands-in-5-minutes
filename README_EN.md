@@ -18,8 +18,12 @@ Welcome to the "Strands Agents in 5 Minutes" tutorial series! This is a series f
 | 3 | Strands Build Custom Tools and Usage | Strands built-in tool calling, custom tool definition and registration | Develop a custom tool (like weather query) and integrate into Strands Agent, register and call built-in tools in Strands Agent | 5 min | L200 | [03_strands_tooluse](03_strands_tooluse/) |
 | 4 | Strands Integration with MCP | Strands discovery, integration and usage of MCP Server | Register multiple MCP Servers to Agentic through MCP and implement calling | 5 min | L200 | [04_strands_mcp](04_strands_mcp/) |
 | 6 | Strands and A2A Protocol | Use A2A protocol to encapsulate Strands Agents for remote Agent collaboration | Use Strands and A2A SDK to develop remote agents and client agent, implement multi agents remote collaboration | 5 min | L300 | [06_a2a_agents](06_a2a_agents/) |
-| 7 | Strands and Dify | Integrate the Dify workflow as an MCP service in Strands | Integrate the Dify workflow into the Strands agent as an MCP service to build a patient intake and triage agent. Developed based on Strands Web UI and implemented using the Python MCP SDK for the Dify workflow MCP. | 5 min | L300 | [07_difymcp_strandsagent_demo](07_difymcp_strandsagent_demo/) |
-| 8 | Unity Strands Agent Plugin | Unity Editor AI plugin based on Strands SDK, integrated via Python.NET with MCP protocol extension support | Chat directly with AI in Unity Editor, get Unity development Q&A, learning guidance and project analysis suggestions | 5 min | L400 | [08_unity_strands_agent](08_unity_strands_agent/) |
+
+## Practical Application Demos
+| No. | Demo Name | Description | Application Scenario | Duration | Directory |
+|-----|-----------|-------------|---------------------|----------|-----------|
+| 1 | Strands and Dify Workflow Integration | Integrate the Dify workflow as an MCP service in Strands | Integrate the Dify workflow into the Strands agent as an MCP service to build a patient intake and triage agent. Developed based on Strands Web UI and implemented using the Python MCP SDK for the Dify workflow MCP. | 5 min | [demo/difymcp_strandsagent_demo](demo/difymcp_strandsagent_demo/) |
+| 2 | Unity Strands Agent Plugin | Unity Editor AI plugin based on Strands SDK, integrated via Python.NET with MCP protocol extension support | Chat directly with AI in Unity Editor, get Unity development Q&A, learning guidance and project analysis suggestions | 5 min | [demo/unity-strands-agent](demo/unity-strands-agent/) |
 
 ## Tutorial Features
 - **Concise and Efficient**: Each session controlled within 5 minutes
@@ -60,13 +64,19 @@ python3 first_agent.py
 ```
 
 ## Course Navigation
-- [Lesson 1: Build Your First Agent](01_first_agent/first_agent.md)
-- [Lesson 2: Strands Session Management and State Maintenance](02_strands_session/strands-session.py)
-- [Lesson 3: Strands Build Custom Tools and Usage](03_strands_tooluse/strands-tooluse.py)
-- [Lesson 4: Strands Integration with MCP](04_strands_mcp/README.md)
-- [Lesson 6: Strands and A2A Protocol](06_a2a_agents/)
-- [Lesson 7: Strands and dify](07_difymcp_strandsagent_demo/)
-- [Lesson 8: Unity Strands Agent Plugin](08_unity_strands_agent/README.md)
+
+### Basic Courses (L100-L200)
+- [Lesson 1: Build Your First Agent](01_first_agent/README.md) - Quick start with Strands SDK
+- [Lesson 2: Strands Session Management and State Maintenance](02_strands_session/) - Multi-turn dialogue and session history
+- [Lesson 3: Strands Build Custom Tools and Usage](03_strands_tooluse/) - Custom tool development and integration
+- [Lesson 4: Strands Integration with MCP](04_strands_mcp/README.md) - Model Context Protocol integration
+
+### Advanced Courses (L300)
+- [Lesson 6: Strands and A2A Protocol](06_a2a_agents/) - Remote Agent collaboration
+
+### Practical Application Demos
+- [Demo1: Strands and Dify Workflow Integration](demo/difymcp_strandsagent_demo/) - Patient triage intelligent Agent system
+- [Demo2: Unity Strands Agent Plugin](demo/unity-strands-agent/) - Unity Editor AI assistant plugin
 
 ## Contributing
 Welcome to submit Pull Requests to help improve this tutorial series!
