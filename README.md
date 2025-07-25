@@ -27,9 +27,9 @@
 | 6 | Strands 与A2A 协议 | 使用A2A协议封装 Strands Agents 实现 Agents 远程协作 | 用Strands 和 A2A SDK开发 remote agents和client agent，实现multi agents 远程协作 | 5 min | L300 | [06_a2a_agents](06_a2a_agents/) |
 
 ## 实际应用演示 (Demo)
-| No. | Demo Name | Description | Application Scenario | Duration | Level | 目录 |
-|-----|-----------|-------------|---------------------|----------|-------|------|
-| D1 | Strands 与 Dify 工作流集成 | Strands 中接入作为 MCP 服务的 dify 工作流 | 将dify工作流作为mcp接入strands agent，构建一个患者接收分诊agent。基于Strands Web UI开发，使用Python MCP SDK 实现 Dify workflow mcp | 10 min | L300 | [demo/difymcp_strandsagent_demo](demo/difymcp_strandsagent_demo/) |
+| No. | Demo Name | Description | Application Scenario | Duration | 目录 |
+|-----|-----------|-------------|---------------------|----------|------|
+| 1 | Strands 与 Dify 工作流集成 | Strands 中接入作为 MCP 服务的 dify 工作流 | 将dify工作流作为mcp接入strands agent，构建一个患者接收分诊agent。基于Strands Web UI开发，使用Python MCP SDK 实现 Dify workflow mcp | 5 min | [demo/difymcp_strandsagent_demo](demo/difymcp_strandsagent_demo/) |
 
 ## 教程特点
 - **简洁高效**: 每节控制在5分钟内，快速上手
