@@ -96,7 +96,7 @@ python3 first_agent.py
 ## 课程导航
 
 ### 基础课程 (L100-L200)
-- [第一课：构建你的第一个Agent](01_first_agent/README.md) - 快速入门Strands SDK
+- [第一课：构建你的第一个Agent](01_first_agent/first_agent.md) - 快速入门Strands SDK
 - [第二课：Strands 会话管理与状态维护](02_strands_session/) - 实现多轮对话和会话历史
 - [第三课：Strands 构建自定义的 tool和使用](03_strands_tooluse/) - 自定义工具开发与集成
 - [第四课：Strands 融合 MCP](04_strands_mcp/README.md) - 模型上下文协议集成

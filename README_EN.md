@@ -66,7 +66,7 @@ python3 first_agent.py
 ## Course Navigation
 
 ### Basic Courses (L100-L200)
-- [Lesson 1: Build Your First Agent](01_first_agent/README.md) - Quick start with Strands SDK
+- [Lesson 1: Build Your First Agent](01_first_agent/first_agent.md) - Quick start with Strands SDK
 - [Lesson 2: Strands Session Management and State Maintenance](02_strands_session/) - Multi-turn dialogue and session history
 - [Lesson 3: Strands Build Custom Tools and Usage](03_strands_tooluse/) - Custom tool development and integration
 - [Lesson 4: Strands Integration with MCP](04_strands_mcp/README.md) - Model Context Protocol integration
