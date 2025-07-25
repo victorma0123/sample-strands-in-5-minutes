@@ -162,7 +162,7 @@ graph TD
 1. **安装插件**
    ```
    Unity Package Manager → Add package from git URL
-   输入：https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=07_unity_strands_agent
+   输入：https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=08_unity_strands_agent
    ```
 
 2. **自动配置**
@@ -201,7 +201,7 @@ graph TD
 1. 在 Unity 中打开 Package Manager
 2. 点击 "+" 按钮
 3. 选择 "Add package from git URL"
-4. 输入：`https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=07_unity_strands_agent`
+4. 输入：`https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=08_unity_strands_agent`
 5. 点击 "Add" 并等待 Unity 自动下载和导入
 
 ### 配置步骤
@@ -440,7 +440,7 @@ graph TD
 1. **Install Plugin**
    ```
    Unity Package Manager → Add package from git URL
-   Enter: https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=07_unity_strands_agent
+   Enter: https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=08_unity_strands_agent
    ```
 
 2. **Auto Setup**
@@ -479,7 +479,7 @@ Through Unity Package Manager:
 1. Open Package Manager in Unity
 2. Click "+" button
 3. Select "Add package from git URL"
-4. Enter: `https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=07_unity_strands_agent`
+4. Enter: `https://github.com/aws-samples/sample-strands-in-5-minutes.git?path=08_unity_strands_agent`
 5. Click "Add" and wait for Unity to automatically download and import
 
 ### Configuration Steps
