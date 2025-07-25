@@ -134,10 +134,3 @@ python3 first_agent.py
 ## 许可证
 本库采用 MIT-0 许可证。详见 [LICENSE](LICENSE) 文件。
 
-## 联系我们
-
-如果您在使用过程中遇到问题或有任何建议，欢迎联系我们：
-- caoliuh@amazon.com
-- chuanxie@amazon.com
-
-我们会尽快回复您的问题，并持续改进这系列。感谢您的使用和反馈！

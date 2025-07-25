@@ -5,7 +5,7 @@
 
 ## 核心概念
 
-![Agentic Loop](../images/01_first_agent/agentic-loop.png)
+![Agentic Loop](images/agentic-loop.png)
 Strands Agents SDK 是亚马逊云科技推出的基于模型驱动的AI Agent SDK，几行代码就可以快速构建和运行Agentic AI 应用。它包含以下核心组件：
 - **模型（Model）**
   - 作为Agent的推理引擎，支持多个模型平台，包括Amazon Bedrock, Anthropic, LiteLLM, Llama API, Ollama以及OpenAI等等
