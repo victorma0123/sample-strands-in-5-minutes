@@ -71,7 +71,10 @@ response = orchestrator(user_query)
 
 ##  demo 架构
 
+
 ```mermaid
+
+
 flowchart TD
     Orchestrator["教学助手<br/>(协调器)<br/><br/>将查询路由到专家的<br/>中央协调器"]
     
@@ -90,7 +93,6 @@ flowchart TD
     CSAssistant --> CSTool["Python REPL、Shell 和文件工具<br/><br/>代码执行和文件操作"]
     GenAssistant --> NoTools["无专用工具<br/><br/>无特定工具的通用知识"]
     
-    classDef hidden stroke-width:0px,fill:none
 ``` 
 
 ## 工作原理和组件实现
