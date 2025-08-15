@@ -5,3 +5,4 @@
 /05_strands_multi_agent/edu_assistant/repl_state
 /07_unity_strands_agent/Python/venv/
 *.unitypackage
+**/.DS_Store
