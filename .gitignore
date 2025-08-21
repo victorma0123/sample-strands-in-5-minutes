@@ -7,3 +7,9 @@
 *.unitypackage
 .DS_Store
 **/.DS_Store
+
+#AgentCore generated files
+**/.agentcore.json
+**/.bedrock_agentcore.yaml
+**/.dockerignore
+**/Dockerfile
