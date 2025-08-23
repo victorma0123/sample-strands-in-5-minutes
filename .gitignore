@@ -1,4 +1,6 @@
 .env
+.venv/
+**/.venv/
 /.vscode
 .kiro
 /05_strands_multi_agent/reference
@@ -13,3 +15,8 @@
 **/.bedrock_agentcore.yaml
 **/.dockerignore
 **/Dockerfile
+
+bedrock-agentcore-integration/workshop/cn/03-bedrock-agentcore-runtime-mcp/mcp_server.py
+bedrock-agentcore-integration/workshop/cn/03-bedrock-agentcore-runtime-mcp/requirements.txt
+bedrock-agentcore-integration/workshop/cn/04-bedrock-agentcore-runtime-strands/strands_agent.py
+bedrock-agentcore-integration/workshop/cn/04-bedrock-agentcore-runtime-strands/requirements.txt
