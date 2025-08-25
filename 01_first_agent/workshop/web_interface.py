@@ -5,8 +5,7 @@ import logging
 from strands import Agent
 from strands.models import BedrockModel
 from strands_tools import current_time, http_request
-
-
+from strands.models.ollama import OllamaModel
 
 logging.basicConfig(
     level=logging.INFO,
@@ -46,49 +45,41 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 可用的模型配置
-MODELS = {
-    "Amazon Nova Pro": "us.amazon.nova-pro-v1:0",
-    "Amazon Nova Premier": "us.amazon.nova-premier-v1:0",
-    "Claude 3.7 Sonnet": "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
-}
+
 
 # 初始化Agent
-def init_agent(model_id=None):
-    # 如果指定了模型ID，使用Bedrock模型
-    if model_id:
-        model = BedrockModel(model_id=model_id)
+def init_agent(model_id="qwen3:1.7b"):
+    try:
+        model = OllamaModel(
+            host="http://127.0.0.1:11434",
+            model_id=model_id
+        )
         return Agent(
-            system_prompt="""你是一个中国国内的生活助手，运用科学的知识回答各种问题。
-            请使用tool来回答问题，如果用户问问题，请用http_request工具，查询中国国内的百科网站。
+            system_prompt="""
+            你是一个中国国内的生活助手，运用科学的知识回答各种问题。
+            如果用户问问题，请尽量调用 http_request 工具查询中国国内的百科网站。
             """,
             model=model,
             tools=[current_time, http_request],
-            callback_handler=None  # 禁用回调处理器，使用流式输出
+            callback_handler=None
         )
-    else:
-        # 默认使用系统配置的模型
-        return Agent(
-            system_prompt="""
-            You are a lifestyle assistant for users in mainland China, 
-            proficient in scientific knowledge and capable of addressing various everyday questions. 
-            When users ask questions, prioritize using the http_request tool to query  Chinese websites (such as Baidu Baike, China Science Communication Network, etc.) to obtain the most current and accurate information. 
-            Your responses should be based on scientific facts, concise, and appropriate for Chinese cultural context. 
-            When encountering uncertain information, clearly inform the user and provide reliable information that is known.
-            """,
-            tools=[current_time, http_request],
-            callback_handler=None  # 禁用回调处理器，使用流式输出
+    except Exception as e:
+        # 这里抛给上层，由界面展示友好提示
+        raise RuntimeError(
+            f"初始化本地模型失败：{e}\n"
+            "请确认已安装并启动 Ollama（`ollama serve`），且已 pull 对应模型（如 `ollama pull qwen3:1.7b`）。"
         )
+
 
 # 初始化会话状态
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "selected_model" not in st.session_state:
-    st.session_state.selected_model = "Amazon Nova Pro"  # 默认选择
+    st.session_state.selected_model = "qwen3:1.7b"  # 默认模型
 
 if "agent" not in st.session_state:
-    model_id = MODELS[st.session_state.selected_model]
-    st.session_state.agent = init_agent(model_id)
+    st.session_state.agent = init_agent(st.session_state.selected_model)
 
 async def process_user_input_streaming(prompt):
     """使用异步流式处理用户输入"""
@@ -159,18 +150,22 @@ def main():
         
         # 模型选择下拉框
         st.subheader("模型选择")
+        OLLAMA_MODELS = ["qwen3:1.7b"]  # 以后可扩展，如 ["qwen3:1.7b", "mistral", "gemma:2b"]
         selected_model = st.selectbox(
             "选择模型",
-            options=list(MODELS.keys()),
-            index=list(MODELS.keys()).index(st.session_state.selected_model)
+            options=OLLAMA_MODELS,
+            index=OLLAMA_MODELS.index(st.session_state.get("selected_model", "qwen3:1.7b"))
         )
-        
+
         # 如果模型选择改变，重新初始化Agent
-        if selected_model != st.session_state.selected_model:
+        if selected_model != st.session_state.get("selected_model"):
             st.session_state.selected_model = selected_model
-            model_id = MODELS[selected_model]
-            st.session_state.agent = init_agent(model_id)
-            st.success(f"已切换到 {selected_model} 模型")
+            try:
+                st.session_state.agent = init_agent(selected_model)
+                st.success(f"已切换到 {selected_model} 模型")
+                st.rerun()  # 触发重绘，避免旧会话与新模型混用
+            except Exception as e:
+                st.error(str(e))
         
         st.markdown("---")
         if st.button("清空对话历史"):
